@@ -1,0 +1,18 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Portfolio.Data;
+
+namespace Portfolio.Controllers
+{
+    public class PersonalInfoController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+        public PersonalInfoController(ApplicationDbContext context) { _context = context; }
+    }
+
+    public async Task<IActionResult> Index()
+        {
+            var personalInfo = await _context.PersonalInfos.ToListAsync();
+            return View(personalInfo);
+        } 
+    }
